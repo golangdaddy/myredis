@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: service-redis
+  namespace: openbanking
+  labels:
+    app.kubernetes.io/name: service-redis
+    app.kubernetes.io/instance: service-redis
+spec:
+  selector:
+    matchLabels:
+      app: service-redis
+  serviceName: service-redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-redis
+    spec:
+      containers:
+      - name: service-redis
+        image: redis:3.2-alpine
+        imagePullPolicy: Always
+        args:
+        - --requirepass
+        - 701f92f7-4f3d-4510-b85d-1aa63d0b55b8
+        ports:
+        - containerPort: 6379
+          name: redis
