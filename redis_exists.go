@@ -1,4 +1,4 @@
-package operations
+package myredis
 
 import (
 	"github.com/gomodule/redigo/redis"
